@@ -25,6 +25,18 @@
         margin-top: 0.5rem;
       }
 
+      input,
+      textarea {
+        display: block;
+        width: 100%;
+        padding: 0.5rem;
+        margin-top: 0.25rem;
+      }
+
+      button {
+        padding: 0.5rem;
+      }
+
       .container {
         padding-top: 1rem;
         padding-bottom: 1rem;
@@ -141,13 +153,26 @@
 
       <div>
         <h2>Kontakt</h2>
-        <ul>
-          <li>
-            <a href="https://www.facebook.com/groups/groblus/" target="_blank">
-              Facebook
-            </a>
-          </li>
-        </ul>
+
+        <p>
+          Om du har en fråga eller vill komma i kontakt med oss, använd
+          formuläret nedan.
+        </p>
+
+        <form name="contact" method="POST" data-netlify="true">
+          <p>
+            <label>Namn: <input type="text" name="name" required /></label>
+          </p>
+          <p>
+            <label>E-post: <input type="email" name="email" required /></label>
+          </p>
+          <p>
+            <label>Message: <textarea name="message" required ></textarea></label>
+          </p>
+          <p>
+            <button type="submit">Skicka meddelande</button>
+          </p>
+        </form>
       </div>
     </div>
   </body>
