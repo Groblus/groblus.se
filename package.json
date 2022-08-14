@@ -1,0 +1,9 @@
+{
+  "name": "groblus.se",
+  "scripts": {
+    "start": "eleventy --serve"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^1.0.1"
+  }
+}
