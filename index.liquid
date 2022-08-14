@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8" />
+    <title>Groblus</title>
+    <meta name="description" content="En spelförening i Stockholm-området. Rollspel, datorspel med mera!" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#333333" />
+    <style type="text/css" media="screen">{% include "./styles.css" %}</style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Groblus Gamers</h1>
+
+      {% renderFile "_includes/om-foreningen.md" %}
+      {% renderFile "_includes/aktiviteter.md" %}
+
+      <div>
+        <h2>Kontakt</h2>
+
+        <p>
+          Om du har en fråga eller vill komma i kontakt med oss, använd
+          formuläret nedan.
+        </p>
+
+        <form name="contact" method="POST" data-netlify="true">
+          <p>
+            <label>Namn: <input type="text" name="name" required /></label>
+          </p>
+          <p>
+            <label>E-post: <input type="email" name="email" required /></label>
+          </p>
+          <p>
+            <label
+              >Message: <textarea name="message" required></textarea>
+            </label>
+          </p>
+          <p>
+            <button type="submit">Skicka meddelande</button>
+          </p>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
