@@ -36,6 +36,12 @@ Vi har publicerat äventyr till **Nordiska Väsen** som andra får använda:
 - [Fostran och utbildning](/downloads/Vaesen_-_Fostran_och_utbildning.pdf)
 - [Odjuret på Ambassaden](/downloads/Vaesen_-_Odjuret_pa_ambassaden.pdf)
 
+Vi har även publicerat äventyr till andra rollspel, som är fria att
+användas:
+
+- [Eon - Den dömda expeditionen till Radh-Kamras ruiner](/downloads/Eon_DEN_DOMDA_EXPEDITIONEN_TILL_RADH-KAMRAS_RUINER.pdf)
+- [Troika - Tåget genom Kosmos](/downloads/Troika_-_Taget_genom_Kosmos.pdf)
+
 ### Brädspel
 
 Utspritt bland föreningens medlemmar finns en massa brädspel, så som:
