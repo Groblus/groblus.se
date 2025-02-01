@@ -9,6 +9,4 @@ anslutna till Sverok och är det än idag. <br />
 Medlemsavgift är 75 kr per år. Budgeten används till inköp av spel och
 tillbehör till dem.
 
-**Bli medlem:** Bli medlem genom att
-[registrera dig på eBas](https://forening.sverok.se/1128)
-och betala in medlemsavgiften på 75 kr per år.
+**Bli medlem:** Använd kontaktformuläret nedan.
