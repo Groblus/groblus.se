@@ -1,12 +1,17 @@
 <div class="gallery">
   <h2>Bildgalleri</h2>
-  <p>Här är några bilder från våra aktiviteter och träffar.</p>
+  <p>
+    Här är några bilder från våra aktiviteter och träffar, 
+    fanart från våra rollspelskampanjer, och annat skoj!
+  </p>
 
   <div class="gallery-grid">
     {% for image in images %}
       <div class="gallery-item">
-        <img src="{{ image.url }}" alt="{{ image.alt }}" />
-        <div class="caption">{{ image.alt }}</div>
+        <img src="{{ image.url }}" {% if image.alt %}alt="{{ image.alt }}"{% endif %} />
+        {% if image.alt %}
+          <div class="caption">{{ image.alt }}</div>
+        {% endif %}
       </div>
     {% endfor %}
   </div>
