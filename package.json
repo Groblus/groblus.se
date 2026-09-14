@@ -1,7 +1,11 @@
 {
   "name": "groblus.se",
   "scripts": {
-    "start": "eleventy --serve"
+    "start": "eleventy --serve",
+    "build": "eleventy",
+    "dev:app": "npm run build && npm --prefix worker run dev",
+    "test": "npm --prefix worker test",
+    "check": "npm run build && node --check spelhyllan/app.js && npm --prefix worker run typecheck && npm --prefix worker test"
   },
   "dependencies": {
     "@11ty/eleventy": "3.1.2"

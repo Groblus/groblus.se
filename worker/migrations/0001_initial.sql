@@ -1,0 +1,18 @@
+PRAGMA foreign_keys = ON;
+CREATE TABLE users(id TEXT PRIMARY KEY,email TEXT UNIQUE,display_name TEXT NOT NULL,password_hash TEXT,discord_id TEXT UNIQUE,created_at TEXT NOT NULL);
+CREATE TABLE games(id TEXT PRIMARY KEY,name TEXT NOT NULL,normalized_name TEXT NOT NULL UNIQUE,kind TEXT NOT NULL CHECK(kind IN ('rpg','boardgame','other')),created_at TEXT NOT NULL);
+CREATE TABLE interests(user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,game_id TEXT NOT NULL REFERENCES games(id) ON DELETE CASCADE,want_play INTEGER NOT NULL CHECK(want_play IN (0,1)),want_gm INTEGER NOT NULL CHECK(want_gm IN (0,1)),updated_at TEXT NOT NULL,PRIMARY KEY(user_id,game_id));
+CREATE TABLE availability(user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,day INTEGER NOT NULL CHECK(day BETWEEN 0 AND 6),period TEXT NOT NULL CHECK(period IN ('day','afternoon','evening')),preference TEXT NOT NULL CHECK(preference IN ('often','sometimes','rarely')),PRIMARY KEY(user_id,day,period));
+CREATE TABLE plans(id TEXT PRIMARY KEY,title TEXT NOT NULL,game_id TEXT NOT NULL REFERENCES games(id),description TEXT NOT NULL,creator_id TEXT NOT NULL REFERENCES users(id),status TEXT NOT NULL DEFAULT 'proposed' CHECK(status IN ('proposed','confirmed')),confirmed_option_id TEXT,created_at TEXT NOT NULL);
+CREATE TABLE plan_options(id TEXT PRIMARY KEY,plan_id TEXT NOT NULL REFERENCES plans(id) ON DELETE CASCADE,starts_at TEXT NOT NULL,ends_at TEXT NOT NULL);
+CREATE TABLE votes(user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,option_id TEXT NOT NULL REFERENCES plan_options(id) ON DELETE CASCADE,vote TEXT NOT NULL CHECK(vote IN ('yes','maybe','no')),PRIMARY KEY(user_id,option_id));
+CREATE TABLE discord_link_codes(code_hash TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,expires_at TEXT NOT NULL);
+CREATE TABLE invites(code_hash TEXT PRIMARY KEY,uses_remaining INTEGER NOT NULL CHECK(uses_remaining>=0),expires_at TEXT NOT NULL);
+CREATE TABLE sessions(token_hash TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,expires_at TEXT NOT NULL);
+CREATE TABLE recovery_codes(code_hash TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,expires_at TEXT NOT NULL);
+CREATE TABLE rate_limits(key TEXT PRIMARY KEY,count INTEGER NOT NULL,expires_at INTEGER NOT NULL);
+CREATE INDEX sessions_user ON sessions(user_id);
+CREATE INDEX plan_options_plan ON plan_options(plan_id);
+CREATE INDEX votes_option ON votes(option_id);
+INSERT INTO games VALUES ('the-warren','The Warren','the warren','rpg',datetime('now')),('ars-magica','Ars Magica','ars magica','rpg',datetime('now'));
+CREATE TABLE discord_interactions(id TEXT PRIMARY KEY,expires_at TEXT NOT NULL);
