@@ -91,3 +91,10 @@ Inbyggda webbläsaren visar Cloudflares riktiga inloggning och bekräftar att en
 ### Discord och PR, 2026-09-14
 
 Discord-koden granskad av subagent. Menyetiketter för spel/planer bevarar nu text även när namnet består av Markdowntecken. `npm run check`: 30 Vitest + 8 CLI = 38 tester, bygge och typkontroll passerade. Developer Portal kräver operatörsinloggning innan faktisk app/installation kan färdigställas. Ingen riktig Discord-synk påstås verifierad.
+
+
+### Discord installerad 2026-09-15
+
+Discords bekräftelsesida visar att Groblus Spelhyllan (`1549521332230946856`) är auktoriserad och tillagd i Groblus Gamers. Server-ID `192356086404087819` verifierat i serverns webbadress. Scope applications.commands, utan privilegierade intents. Worker `2210d490-69ce-4993-9b8d-339663d1ef48` publicerad med appens offentliga signeringsnyckel och rätt server-ID, samma staging-D1.
+
+Kommandoregistrering väntar på att operatören genererar bot-token i portalen; inga tokens finns i dokumentationen. Cloudflare-formulär för Bypass Everyone är förberett endast för `groblus-spelhyllan-staging.oliver-glant.workers.dev/api/discord/interactions`, ej sparat. Signaturkontrollen och serveravgränsningen i Worker behålls. Kräver godkännande av denna separata nätverksregel. Verklig PING, /groblus och dubbelriktad synk är ännu inte verifierade.

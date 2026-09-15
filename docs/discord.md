@@ -1,6 +1,6 @@
 # Spelhyllan i Discord
 
-Status, 2026-09-14: Discord implementation passes local tests. No Discord application has been created or installed and no commands have been registered. The shared Worker and D1 are deployed in web-only staging. Developer Portal is waiting for the operator to sign in; live Discord acceptance remains open.
+Status, 2026-09-15: Groblus Spelhyllan is installed in Groblus Gamers with applications.commands only. The shared Worker and D1 have the real public verification key and guild ID. Command registration, the exact-path Access exception and live interaction verification remain pending; see [acceptance](glantan-acceptance.md).
 
 ## Member experience
 
