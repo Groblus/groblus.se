@@ -13,5 +13,6 @@ Generated 2026-09-16 with built-in image generation. Each final set contains a 1
 - `noticeboard/icon.png`
 - `noticeboard/banner.png`
 - Direction: medieval carved-oak noticeboard, handwritten quest notices, an ink portrait, a simple die sketch, seals, brass pins, ivy and warm lantern light.
+- Selected by Oliver and applied to the live Discord application and bot profile on 2026-09-16.
 
 Source renders used for cropping may be retained locally outside the repository. Only the four final assets are intended for Discord upload.
