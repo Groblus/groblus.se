@@ -2,3 +2,12 @@
 _site/
 node_modules/
 package-lock.json
+!worker/package-lock.json
+
+.wrangler/
+.dev.vars
+.env
+.env.*
+!.env.example
+
+.superdesign/

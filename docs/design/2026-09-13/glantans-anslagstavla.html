@@ -1,0 +1,245 @@
+<!DOCTYPE html><html lang="sv"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gläntans anslagstavla · Groblus</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        navy: '#203c32',
+        saffron: '#bba16b',
+        sky: '#d6d5bd',
+        paper: '#f0ecdc'
+      },
+      fontFamily: {
+        sans: ['Lato', 'sans-serif'],
+      }
+    }
+  }
+}
+</script>
+<style>
+  body {
+    background-color: #f0ecdc;
+    color: #203c32;
+    font-family: 'Lato', sans-serif;
+  }
+  button:focus-visible, input:focus-visible, a:focus-visible {
+    outline: 3px solid #bba16b;
+    outline-offset: 3px;
+  }
+
+.hybrid.hybrid{background:#172f29;background-image:radial-gradient(ellipse at 8% 0%,#34524655,transparent 55%);}
+.hybrid>header{border-bottom:1px solid #bba16b55;margin-bottom:10px}
+#nav-home{font-family:Cinzel,serif;color:#d4bc81;font-weight:500;letter-spacing:.12em}#nav-home span{font-family:Lato,sans-serif;color:#d9deca}
+#btn-profile{color:#e8ddba;border:1px solid #bba16b88;border-radius:3px;font-weight:400}
+.welcome h1{font-family:Cinzel,serif;font-size:36px;color:#eee7d2;letter-spacing:-.02em;font-weight:500}.welcome p{color:#d5ddcb;font-size:16px}.welcome>div:first-child{color:#c2ad7e}
+#btn-add-game{border-radius:3px;border:1px solid #d2bc83;box-shadow:2px 3px 0 #0e201b;color:#172f29}
+.proposal,.times{border:1px solid #bba16b;border-radius:5px;box-shadow:4px 5px 0 #0c201bcc,inset 0 0 0 5px #e0dbc6;background:linear-gradient(135deg,#f0ecdc,#e4e0cd)}
+.proposal:after{content:'✧';position:absolute;right:12px;top:10px;color:#917747;font-size:20px}
+h2,h3{font-family:Cinzel,serif;font-weight:500!important}h2{font-size:17px!important}h3{font-size:17px!important}
+#btn-answer-date{border-radius:3px;border:1px solid #9b8655;background:#203c32;color:#f0ecdc;box-shadow:inset 0 0 0 3px #ffffff08}
+.tabs nav>button{color:#ded6b9;font-family:Cinzel,serif;font-weight:500;border-radius:7px 7px 0 0}
+.tabs nav>button:first-child{background:#d6d5bd;color:#203c32;border:1px solid #bba16b;border-bottom:0;box-shadow:inset 0 3px #bba16b}
+.lower{border-top:1px solid #bba16b;background-color:#d6d5bd;background-image:linear-gradient(90deg,#203c3205 1px,transparent 1px);background-size:32px 32px}
+.lower article{border-bottom-width:1px}.lower button,.lower input{border-radius:3px;border-width:1px}.lower button[aria-pressed=true]{background:#203c32;color:#f0ecdc;border-color:#bba16b;box-shadow:inset 0 0 0 2px #bba16b44}
+.lower article>div:first-child>div:first-child{border-radius:3px;border:1px solid #9f9f7f;background:#203c32;color:#d4bc81}
+.lower article:nth-child(odd){background:#e9e6d750}.lower article small,.lower article span{font-weight:400}
+@media(max-width:600px){.welcome h1{font-size:29px}.tabs nav>button{padding-left:20px;padding-right:20px}}
+</style>
+</head>
+<body>
+<div class="hybrid min-h-screen bg-paper text-navy font-sans">
+
+  <!-- Header -->
+  <header class="max-w-[1280px] mx-auto px-6 py-6 flex justify-between items-center">
+    <a class="font-black text-2xl tracking-wide text-navy leading-none no-underline" href="#" id="nav-home">
+      GROBLUS<span class="block text-[10px] tracking-[0.3em] mt-1 font-bold">GAMERS</span>
+    </a>
+    <button class="bg-transparent border-2 border-navy text-navy rounded-lg px-4 py-2 font-bold hover:bg-navy hover:text-paper transition-colors" id="btn-profile">Min profil</button>
+  </header>
+
+  <!-- Upper Noticeboard Area -->
+  <div class="max-w-[1280px] mx-auto px-6 pt-6 pb-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+      <!-- Welcome Block -->
+      <div class="welcome lg:col-span-5 flex flex-col justify-center py-4">
+        <div class="text-xs font-bold tracking-widest text-navy/60 mb-3 uppercase">Spelhyllan</div>
+        <h1 class="text-4xl lg:text-5xl font-black text-navy leading-tight mb-4 tracking-tight">Vad vill vi spela?</h1>
+        <p class="text-lg text-navy/80 mb-8 font-semibold">Välj spel och hitta andra som vill vara med.</p>
+        <div>
+          <button class="bg-saffron text-navy border-0 rounded-lg py-3 px-6 font-bold text-sm cursor-pointer hover:brightness-105 transition-all shadow-[3px_3px_0px_#203c32] hover:shadow-[1px_1px_0px_#203c32] hover:translate-y-[2px] hover:translate-x-[2px]" id="btn-add-game">
+            + Lägg till spel
+          </button>
+        </div>
+      </div>
+
+      <!-- Pinned Date Proposal -->
+      <div class="proposal bg-paper border-2 border-navy rounded-lg p-6 relative shadow-[6px_6px_0px_#203c32] lg:col-span-4 mt-4 lg:mt-0">
+        <div class="absolute -top-3 left-4 bg-saffron text-navy text-[10px] font-bold px-3 py-1 rounded shadow-sm uppercase tracking-widest">Datumförslag</div>
+        <h2 class="text-xl font-bold mt-2 mb-2">En kväll med The Warren</h2>
+        <p class="text-sm text-navy/80 mb-5 font-semibold">Tors 15 okt eller lör 17 okt</p>
+        <div class="flex items-center mb-6">
+           <span class="w-8 h-8 grid place-items-center rounded-full border-2 border-paper bg-sky text-xs font-bold -ml-2 first:ml-0 shadow-sm">A</span>
+           <span class="w-8 h-8 grid place-items-center rounded-full border-2 border-paper bg-sky text-xs font-bold -ml-2 shadow-sm">B</span>
+           <span class="w-8 h-8 grid place-items-center rounded-full border-2 border-paper bg-sky text-xs font-bold -ml-2 shadow-sm">C</span>
+           <small class="text-xs text-navy/80 ml-3 font-bold">3 har svarat</small>
+        </div>
+        <button class="w-full bg-navy text-paper rounded-lg py-3 px-4 font-bold text-sm hover:bg-navy/90 transition-colors" id="btn-answer-date">Svara på datum →</button>
+      </div>
+
+      <!-- Dina Tider -->
+      <div class="times bg-paper border-2 border-sky rounded-lg p-6 lg:col-span-3 flex flex-col justify-between mt-4 lg:mt-0">
+        <div>
+          <div class="flex justify-between items-center mb-5">
+            <h2 class="text-lg font-bold">Dina tider</h2>
+            <button class="text-navy underline font-bold text-sm bg-transparent border-0 hover:text-navy/70" id="btn-edit-times">Ändra</button>
+          </div>
+          <div class="flex justify-between mb-3 text-sm">
+            <b class="text-navy">Fredag</b>
+            <span>18–22 <em class="not-italic text-navy/60 text-xs ml-2 font-bold">Ofta</em></span>
+          </div>
+          <div class="flex justify-between mb-3 text-sm">
+            <b class="text-navy">Lördag</b>
+            <span>14–18 <em class="not-italic text-navy/60 text-xs ml-2 font-bold">Ofta</em></span>
+          </div>
+        </div>
+        <p class="text-xs font-semibold text-navy/60 mt-5 leading-relaxed">Vanliga tider hjälper oss hitta datum. De räknas inte som en anmälan.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Tabbed Nav Below Noticeboard -->
+  <div class="tabs max-w-[1280px] mx-auto px-6 flex">
+    <nav class="flex gap-1">
+      <button class="bg-sky border-2 border-b-0 border-navy text-navy px-8 py-3.5 rounded-t-lg font-bold text-sm -mb-[2px] relative z-10">Spel</button>
+      <button class="bg-transparent text-navy/60 px-8 py-3.5 font-bold text-sm hover:text-navy">Tider</button>
+      <button class="bg-transparent text-navy/60 px-8 py-3.5 font-bold text-sm hover:text-navy flex items-center gap-2">
+        Träffar <span class="bg-saffron text-navy text-[10px] px-2 py-0.5 rounded-full">2</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Lower Area (Pale Blue) -->
+  <div class="lower bg-sky min-h-[500px] border-t-2 border-navy relative z-0">
+    <div class="max-w-[1280px] mx-auto px-6 py-10">
+
+      <!-- Toolbar -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
+        <div class="flex items-center gap-4 w-full sm:w-auto">
+          <label class="relative w-full sm:w-72">
+            <span class="absolute left-[-10000px]">Sök spel</span>
+            <input type="search" placeholder="Sök spel…" class="bg-paper border-2 border-navy text-navy py-2.5 px-4 rounded-lg w-full font-bold placeholder-navy/40 focus:outline-none focus:border-saffron shadow-sm">
+          </label>
+        </div>
+        <div class="flex gap-2 w-full sm:w-auto overflow-x-auto pb-2 sm:pb-0">
+          <button class="bg-navy text-paper py-2.5 px-5 border-0 rounded-lg font-bold text-sm shrink-0">Alla</button>
+          <button class="bg-paper text-navy py-2.5 px-5 border-0 rounded-lg font-bold text-sm shrink-0 hover:bg-white transition-colors shadow-sm">Rollspel</button>
+          <button class="bg-paper text-navy py-2.5 px-5 border-0 rounded-lg font-bold text-sm shrink-0 hover:bg-white transition-colors shadow-sm">Brädspel</button>
+        </div>
+      </div>
+
+      <!-- Full-width list (White rows) -->
+      <div class="bg-paper border-2 border-navy rounded-lg shadow-[6px_6px_0px_#203c32] overflow-hidden">
+        <!-- Headers -->
+        <div class="hidden md:grid grid-cols-[1fr_160px_auto] py-4 px-6 text-xs font-bold text-navy/50 border-b-2 border-sky uppercase tracking-wider bg-paper">
+          <span>Spel</span>
+          <span>Intresserade</span>
+          <span class="text-right pr-4">Mina val</span>
+        </div>
+
+        <!-- Game Rows -->
+        <!-- The Warren -->
+        <article class="grid grid-cols-1 md:grid-cols-[1fr_160px_auto] items-center py-5 px-6 border-b-2 border-sky gap-4 last:border-b-0">
+          <div class="flex items-center gap-5 min-w-0">
+            <div class="w-12 h-14 flex-none grid place-items-center text-3xl bg-sky/50 text-navy rounded-lg border-2 border-sky font-sans" aria-hidden="true">♧</div>
+            <div>
+              <h3 class="text-lg font-bold m-0 text-navy">The Warren</h3>
+              <span class="text-xs font-bold text-navy/60">Rollspel · Berättande</span>
+            </div>
+          </div>
+          <div class="text-sm font-bold text-navy">
+            5 vill spela
+            <small class="block text-navy/60 text-xs font-bold mt-1">1 vill spelleda</small>
+          </div>
+          <div class="flex gap-3 col-span-full md:col-auto md:justify-end">
+            <button class="bg-saffron border-2 border-navy text-navy rounded-lg py-2.5 px-4 text-xs font-bold whitespace-nowrap shadow-[2px_2px_0px_#203c32]" aria-pressed="true">✓ Vill spela</button>
+            <button class="bg-paper border-2 border-sky text-navy rounded-lg py-2.5 px-4 text-xs font-bold whitespace-nowrap hover:border-navy transition-colors" aria-pressed="false">+ Vill spelleda</button>
+          </div>
+        </article>
+
+        <!-- Ars Magica -->
+        <article class="grid grid-cols-1 md:grid-cols-[1fr_160px_auto] items-center py-5 px-6 border-b-2 border-sky gap-4 last:border-b-0">
+          <div class="flex items-center gap-5 min-w-0">
+            <div class="w-12 h-14 flex-none grid place-items-center text-3xl bg-sky/50 text-navy rounded-lg border-2 border-sky font-sans" aria-hidden="true">✶</div>
+            <div>
+              <h3 class="text-lg font-bold m-0 text-navy">Ars Magica</h3>
+              <span class="text-xs font-bold text-navy/60">Rollspel · Kampanj</span>
+            </div>
+          </div>
+          <div class="text-sm font-bold text-navy">
+            4 vill spela
+            <small class="block text-navy/60 text-xs font-bold mt-1">2 vill spelleda</small>
+          </div>
+          <div class="flex gap-3 col-span-full md:col-auto md:justify-end">
+            <button class="bg-paper border-2 border-sky text-navy rounded-lg py-2.5 px-4 text-xs font-bold whitespace-nowrap hover:border-navy transition-colors" aria-pressed="false">+ Vill spela</button>
+            <button class="bg-saffron border-2 border-navy text-navy rounded-lg py-2.5 px-4 text-xs font-bold whitespace-nowrap shadow-[2px_2px_0px_#203c32]" aria-pressed="true">✓ Vill spelleda</button>
+          </div>
+        </article>
+
+        <!-- Root -->
+        <article class="grid grid-cols-1 md:grid-cols-[1fr_160px_auto] items-center py-5 px-6 border-b-2 border-sky gap-4 last:border-b-0">
+          <div class="flex items-center gap-5 min-w-0">
+            <div class="w-12 h-14 flex-none grid place-items-center text-3xl bg-sky/50 text-navy rounded-lg border-2 border-sky font-sans" aria-hidden="true">♜</div>
+            <div>
+              <h3 class="text-lg font-bold m-0 text-navy">Root</h3>
+              <span class="text-xs font-bold text-navy/60">Brädspel · Strategi</span>
+            </div>
+          </div>
+          <div class="text-sm font-bold text-navy">
+            6 vill spela
+            <small class="block text-navy/60 text-xs font-bold mt-1">Öppen spelgrupp</small>
+          </div>
+          <div class="flex gap-3 col-span-full md:col-auto md:justify-end">
+            <button class="bg-saffron border-2 border-navy text-navy rounded-lg py-2.5 px-4 text-xs font-bold whitespace-nowrap shadow-[2px_2px_0px_#203c32]" aria-pressed="true">✓ Vill spela</button>
+            <button class="bg-paper border-2 border-sky text-navy rounded-lg py-2.5 px-4 text-xs font-bold whitespace-nowrap hover:border-navy transition-colors" aria-pressed="false">+ Vill spelleda</button>
+          </div>
+        </article>
+
+        <!-- Spelkväll, blandat -->
+        <article class="grid grid-cols-1 md:grid-cols-[1fr_160px_auto] items-center py-5 px-6 border-b-2 border-sky gap-4 last:border-b-0">
+          <div class="flex items-center gap-5 min-w-0">
+            <div class="w-12 h-14 flex-none grid place-items-center text-3xl bg-sky/50 text-navy rounded-lg border-2 border-sky font-sans" aria-hidden="true">⚄</div>
+            <div>
+              <h3 class="text-lg font-bold m-0 text-navy">Spelkväll, blandat</h3>
+              <span class="text-xs font-bold text-navy/60">Brädspel · Prova något nytt</span>
+            </div>
+          </div>
+          <div class="text-sm font-bold text-navy">
+            8 vill spela
+            <small class="block text-navy/60 text-xs font-bold mt-1">Öppen spelgrupp</small>
+          </div>
+          <div class="flex gap-3 col-span-full md:col-auto md:justify-end">
+            <button class="bg-paper border-2 border-sky text-navy rounded-lg py-2.5 px-4 text-xs font-bold whitespace-nowrap hover:border-navy transition-colors" aria-pressed="false">+ Vill spela</button>
+            <button class="bg-paper border-2 border-sky text-navy rounded-lg py-2.5 px-4 text-xs font-bold whitespace-nowrap hover:border-navy transition-colors" aria-pressed="false">+ Vill spelleda</button>
+          </div>
+        </article>
+      </div>
+
+      <p class="text-sm font-bold mt-8 text-navy/60 text-center md:text-left">Du kan välja både spela och spelleda. Ändra när du vill.</p>
+
+    </div>
+
+    <footer class="max-w-[1280px] mx-auto py-8 px-6 flex flex-col sm:flex-row justify-between gap-4 text-xs font-bold text-navy/60 border-t-2 border-navy/10">
+      <span id="rationale">Gläntans anslagstavla · fantasy + föreningsliv</span>
+      <small class="whitespace-nowrap font-bold">Konceptskiss · inga svar sparas</small>
+    </footer>
+  </div>
+
+</div>
+</body></html>

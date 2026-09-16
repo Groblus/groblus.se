@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#172f29" />
+    <title>Spelhyllan · Groblus Gamers</title>
+    <link rel="stylesheet" href="/spelhyllan/style.css" />
+    <script defer src="/spelhyllan/app.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/"
+        ><span class="brand-name">GROBLUS <small>GAMERS</small></span></a
+      ><span class="top-label">Spelhyllan</span
+      ><button id="profile-open" class="quiet hidden">Min profil</button>
+    </header>
+    <main id="app">
+      <section id="auth-view" class="auth-layout">
+        <div class="welcome">
+          <p class="eyebrow">GROBLUS GAMERS · SPELHYLLAN</p>
+          <h1>Vad vill vi spela?</h1>
+          <p class="intro">
+            Samla dina spelintressen, hitta gemensamma tider och planera nästa
+            träff.
+          </p>
+          <ul class="welcome-features">
+            <li>Välj spel att spela eller spelleda</li>
+            <li>Berätta när du brukar kunna</li>
+            <li>Föreslå en träff och svara på datum</li>
+          </ul>
+          <p class="subtle">
+            För medlemmar i Groblus Gamers. Discord behövs inte.
+          </p>
+        </div>
+        <section class="auth-card">
+          <p class="eyebrow">VÄLKOMMEN TILL HYLLAN</p>
+          <h2 id="auth-title">Logga in till Spelhyllan</h2>
+          <p>Vi kommer ihåg dig på den här enheten. Ny kod kan behövas efter en månad eller på en ny enhet.</p>
+          <a class="primary full access-login" href="/spelhyllan/" id="access-login">Logga in</a>
+          <p id="auth-message" class="form-message" role="status"></p>
+        </section>
+      </section>
+      <section id="member-view" class="hidden">
+        <div class="noticeboard">
+          <div class="page-intro">
+            <p class="eyebrow">SPELHYLLAN</p>
+            <h1>Vad vill vi spela?</h1>
+            <p class="intro" id="greeting"></p>
+            <button class="primary" id="add-game-open">+ Lägg till spel</button>
+          </div>
+          <article
+            id="next-plan"
+            class="notice-card proposal"
+            aria-label="Nästa träff"
+          >
+            <p class="notice-label">TRÄFFAR</p>
+            <h2 class="notice-heading">Hämtar träffar…</h2>
+          </article>
+          <article class="notice-card times" aria-labelledby="times-heading">
+            <div class="notice-title-row">
+              <h2 id="times-heading" class="notice-heading">Dina tider</h2>
+              <button class="text-button" data-open-tab="availability">
+                Ändra
+              </button>
+            </div>
+            <div id="times-summary">
+              <p class="notice-copy">Hämtar dina tider…</p>
+            </div>
+            <p class="notice-footnote">
+              Vanliga tider hjälper oss hitta datum. De räknas inte som en
+              anmälan.
+            </p>
+          </article>
+        </div>
+        <nav class="tabs" aria-label="Spelhyllan">
+          <button data-tab="games" aria-current="page">
+            Spel <span id="game-total"></span></button
+          ><button data-tab="availability">Mina tider</button
+          ><button data-tab="plans">
+            Träffar <span id="plan-total"></span>
+          </button>
+        </nav>
+        <div class="lower">
+          <section id="games-panel" class="panel">
+            <div class="section-heading">
+              <div>
+                <h2>Spel på hyllan</h2>
+                <p>
+                  Välj att spela, spelleda eller båda. Du kan ändra dig när som
+                  helst.
+                </p>
+              </div>
+            </div>
+            <div class="filters">
+              <label class="search-label"
+                ><span class="sr-only">Sök bland spel</span
+                ><input
+                  type="search"
+                  id="game-search"
+                  placeholder="Sök på hyllan…" /></label
+              ><label
+                ><span class="sr-only">Typ av spel</span
+                ><select id="game-kind">
+                  <option value="all">Alla spel</option>
+                  <option value="rpg">Rollspel</option>
+                  <option value="boardgame">Brädspel</option>
+                  <option value="other">Annat</option>
+                </select></label
+              ><label class="check-label"
+                ><input id="my-games" type="checkbox" /> Mina intressen</label
+              >
+            </div>
+            <div class="game-list-heading" aria-hidden="true">
+              <span>Spel</span><span>Intresserade</span><span>Mina val</span>
+            </div>
+            <div id="games-grid" class="games-grid"></div>
+          </section>
+          <section id="availability-panel" class="panel hidden">
+            <div class="section-heading">
+              <div>
+                <h2>När brukar det passa?</h2>
+                <p>
+                  Din vanliga vecka, inte ett löfte. Klicka för att växla svar.
+                </p>
+              </div>
+              <button class="primary" id="save-availability">
+                Spara mina tider
+              </button>
+            </div>
+            <div class="legend">
+              <span>○ Ej angivet</span><span>● Ofta</span><span>◐ Ibland</span
+              ><span>– Sällan</span>
+            </div>
+            <div class="availability-scroll">
+              <table class="availability-table">
+                <caption class="sr-only">
+                  Allmän tillgänglighet, lokal tid i Sverige
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Dag</th>
+                    <th scope="col">Dagtid <small>10–14</small></th>
+                    <th scope="col">Eftermiddag <small>14–18</small></th>
+                    <th scope="col">Kväll <small>18–22</small></th>
+                  </tr>
+                </thead>
+                <tbody id="availability-body"></tbody>
+              </table>
+            </div>
+            <p class="subtle" id="availability-status" role="status">
+              Alla tider är lokal tid i Sverige. Ej angivet betyder att vi inte
+              vet.
+            </p>
+          </section>
+          <section id="plans-panel" class="panel hidden">
+            <div class="section-heading">
+              <div>
+                <h2>Från idé till spelbord.</h2>
+                <p>Föreslå några datum, hitta en tid och spika träffen.</p>
+              </div>
+              <button class="primary" id="add-plan-open">
+                + Föreslå en träff
+              </button>
+            </div>
+            <div id="plans-list"></div>
+          </section>
+        </div>
+      </section>
+      <p id="global-message" role="status" aria-live="polite"></p>
+    </main>
+    <footer><span>GROBLUS GAMERS</span><span>Spelhyllan</span></footer>
+    <dialog aria-labelledby="game-title" id="game-dialog">
+      <form id="game-form">
+        <div class="dialog-heading">
+          <h2 id="game-title">Ett spel till på hyllan</h2>
+          <button type="button" class="close" data-close aria-label="Stäng">
+            ×
+          </button>
+        </div>
+        <label
+          >Spelets namn<input
+            name="name"
+            required
+            maxlength="100"
+            placeholder="Till exempel The Warren" /></label
+        ><label
+          >Typ av spel<select name="kind">
+            <option value="rpg">Rollspel</option>
+            <option value="boardgame">Brädspel</option>
+            <option value="other">Annat</option>
+          </select></label
+        >
+        <p class="form-message" role="status"></p>
+        <button type="submit" class="primary full">Lägg till spel</button>
+      </form>
+    </dialog>
+    <dialog aria-labelledby="profile-title" id="profile-dialog">
+      <div class="dialog-heading">
+        <h2 id="profile-title">Min profil</h2>
+        <button type="button" class="close" data-close aria-label="Stäng">
+          ×
+        </button>
+      </div>
+      <form id="profile-form">
+        <label>Ditt namn<input id="profile-name" name="displayName" autocomplete="name" maxlength="80" required /></label>
+        <p class="form-message" role="status"></p>
+        <button type="submit" class="secondary">Spara namn</button>
+      </form>
+      <p id="profile-email" class="subtle"></p>
+      <hr />
+      <h3>Discord, om du vill</h3>
+      <p>
+        Du kan använda samma spelhylla i Discord genom att koppla ditt konto.
+        Hemsidan fungerar helt utan det.
+      </p>
+      <button id="link-discord" class="secondary">Skapa kopplingskod</button>
+      <p id="discord-code" role="status"></p>
+      <hr />
+      <button id="logout" class="secondary">Logga ut</button>
+    </dialog>
+    <dialog aria-labelledby="plan-title" id="plan-dialog" class="wide-dialog">
+      <form id="plan-form">
+        <div class="dialog-heading">
+          <h2 id="plan-title">Samla ett spelbord</h2>
+          <button type="button" class="close" data-close aria-label="Stäng">
+            ×
+          </button>
+        </div>
+        <label
+          >Vad vill du göra?<input
+            name="title"
+            required
+            maxlength="120"
+            placeholder="En kväll med The Warren" /></label
+        ><label
+          >Spel<select name="gameId" id="plan-game" required></select></label
+        ><label
+          >Lite mer om träffen<textarea
+            name="description"
+            rows="3"
+            maxlength="2000"
+            placeholder="Plats, upplägg och annat som är bra att veta"
+          ></textarea>
+        </label>
+        <h3>Datumförslag</h3>
+        <p class="subtle">
+          Lägg till 2–5 alternativ. Ange tiderna i svensk lokal tid.
+        </p>
+        <div id="plan-dates"></div>
+        <button type="button" id="add-date" class="quiet">
+          + Lägg till ett datum
+        </button>
+        <p class="form-message" role="status"></p>
+        <button class="primary full" type="submit">Lägg upp förslaget</button>
+      </form>
+    </dialog>
+  </body>
+</html>
