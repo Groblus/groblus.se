@@ -1,6 +1,6 @@
 # Spelhyllan i Discord
 
-Status, 2026-09-15: Groblus Spelhyllan is installed in Groblus Gamers with applications.commands only. The shared Worker and D1 have the real public verification key and guild ID. Command registration, the exact-path Access exception and live interaction verification remain pending; see [acceptance](glantan-acceptance.md).
+Status, 2026-09-16: Groblus Spelhyllan is installed in Groblus Gamers with applications.commands only. The shared Worker and D1 have the real public verification key and guild ID. The exact interaction endpoint is exempted from browser login, Discord's signed PING was accepted, and an unsigned POST returned 401. Command registration and live data-flow verification remain pending; see [acceptance](glantan-acceptance.md).
 
 ## Member experience
 

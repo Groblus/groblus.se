@@ -98,3 +98,9 @@ Discord-koden granskad av subagent. Menyetiketter för spel/planer bevarar nu te
 Discords bekräftelsesida visar att Groblus Spelhyllan (`1549521332230946856`) är auktoriserad och tillagd i Groblus Gamers. Server-ID `192356086404087819` verifierat i serverns webbadress. Scope applications.commands, utan privilegierade intents. Worker `2210d490-69ce-4993-9b8d-339663d1ef48` publicerad med appens offentliga signeringsnyckel och rätt server-ID, samma staging-D1.
 
 Kommandoregistrering väntar på att operatören genererar bot-token i portalen; inga tokens finns i dokumentationen. Cloudflare-formulär för Bypass Everyone är förberett endast för `groblus-spelhyllan-staging.oliver-glant.workers.dev/api/discord/interactions`, ej sparat. Signaturkontrollen och serveravgränsningen i Worker behålls. Kräver godkännande av denna separata nätverksregel. Verklig PING, /groblus och dubbelriktad synk är ännu inte verifierade.
+
+### Signerad Discord-endpoint verifierad 2026-09-16
+
+Cloudflare-applikationen `Groblus Discord interactions` skyddar exakt `groblus-spelhyllan-staging.oliver-glant.workers.dev/api/discord/interactions` med policyn `Discord signed interactions only` (Bypass, Everyone). Övriga staging-sökvägar påverkas inte och ligger kvar bakom Cloudflare Access. Discord accepterade och sparade endpointadressen efter sin signerade PING-kontroll. Ett separat osignerat POST-anrop gav HTTP 401, vilket bekräftar att Workerns signaturkontroll fortfarande stoppar vanliga anrop.
+
+Kommandoregistrering och verkliga `/groblus`-flöden återstår. Bot-token får inte lagras i repo eller dokumentation; operatören genererar den på Discords botsida och registreringsskriptet använder den endast i processmiljön.
