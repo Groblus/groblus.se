@@ -4,6 +4,8 @@ Vi håller på med många olika saker inom det som Sverok kallar för
 ”spelhobbyn” – diverse nördiga aktiviteter! Senaste åren har det främst
 blivit rollspel och samtal om rollspel, samt datorspel online.
 
+[Spelhyllan – för medlemmar](/spelhyllan/): hitta spel och planera nästa träff.
+
 ### Datorspel
 Vi spelar en del datorspel online, t ex Minecraft, Dominions 5 och
 Valheim - men också enklare partyspel som Jackbox och Duck Game. Detta
