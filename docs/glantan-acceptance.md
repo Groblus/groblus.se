@@ -103,4 +103,6 @@ Kommandoregistrering väntar på att operatören genererar bot-token i portalen;
 
 Cloudflare-applikationen `Groblus Discord interactions` skyddar exakt `groblus-spelhyllan-staging.oliver-glant.workers.dev/api/discord/interactions` med policyn `Discord signed interactions only` (Bypass, Everyone). Övriga staging-sökvägar påverkas inte och ligger kvar bakom Cloudflare Access. Discord accepterade och sparade endpointadressen efter sin signerade PING-kontroll. Ett separat osignerat POST-anrop gav HTTP 401, vilket bekräftar att Workerns signaturkontroll fortfarande stoppar vanliga anrop.
 
-Kommandoregistrering och verkliga `/groblus`-flöden återstår. Bot-token får inte lagras i repo eller dokumentation; operatören genererar den på Discords botsida och registreringsskriptet använder den endast i processmiljön.
+Guild-kommandot `/groblus` registrerades och lästes tillbaka från Discord med fem underkommandon. Ett verkligt `/groblus profil` i Groblus Gamers `#bot-kommandon` fick inom Discords deadline ett privat svar från Groblus Spelhyllan: användaren uppmanades att registrera sig eller koppla sin webbprofil. Bot-token ligger endast i den git-ignorerade lokala filen `.env.discord.local` med privata filrättigheter; den finns inte i repo eller dokumentation.
+
+Kvarvarande Discord-acceptans är datatest med riktig profil: registrering eller koppling, intresse/tid i båda riktningarna samt röstning på webbens datumförslag.
