@@ -16,6 +16,7 @@ declare global {
 // database contract explicitly, after each file's beforeAll applies migrations.
 beforeEach(async () => {
   const tables = [
+    "memberships",
     "votes",
     "plan_options",
     "plans",

@@ -1,0 +1,7 @@
+<!doctype html>
+<html lang="sv"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hantera medlemmar – Spelhyllan</title><link rel="stylesheet" href="../style.css"><script src="admin.js" defer></script></head>
+<body><main class="shell"><a href="../">← Spelhyllan</a><h1>Hantera medlemmar</h1><p id="message" role="status">Kontrollerar behörighet…</p>
+<section id="admin" hidden><h2>Registrera betald medlemsavgift</h2><p>Klistra in en e-postadress per rad. Befintliga Discord-kopplingar bevaras. Adresser som saknas i listan ändras inte.</p>
+<form id="import"><label for="year">Medlemsår</label><input id="year" type="number" min="2000" required><label for="emails">E-postadresser (högst 100)</label><textarea id="emails" rows="8" required placeholder="medlem@example.se"></textarea><button>Förhandsgranska</button></form>
+<section id="preview" hidden><h2>Kontrollera listan</h2><p id="summary"></p><ul id="addresses"></ul><button id="save" type="button">Markera som betalt</button></section>
+<h2>Registrerade medlemskap</h2><ul id="members"></ul></section></main></body></html>

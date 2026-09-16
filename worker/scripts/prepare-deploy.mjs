@@ -55,7 +55,7 @@ const config = {
   compatibility_date: "2025-09-06",
   workers_dev: true,
   assets: { directory: "./assets", binding: "ASSETS", run_worker_first: true },
-  vars: { APP_ORIGIN: appOrigin, SITE_ORIGIN: siteOrigin, ...accessVars, ...discordVars },
+  vars: { APP_ORIGIN: appOrigin, SITE_ORIGIN: siteOrigin, ...accessVars, ...discordVars, ...(process.env.ADMIN_EMAILS ? {ADMIN_EMAILS: process.env.ADMIN_EMAILS} : {}) },
   d1_databases: [{ binding: "DB", database_name: databaseName, database_id: database, migrations_dir: "../../../migrations" }],
   triggers: { crons: ["17 * * * *"] },
 };

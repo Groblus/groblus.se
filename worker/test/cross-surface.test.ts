@@ -88,6 +88,7 @@ async function discord(data: unknown, type = 3) {
 }
 
 async function linkedMember() {
+  await env.DB.prepare("INSERT OR REPLACE INTO memberships VALUES (?,2200,?,?)").bind("cross-surface@example.invalid", "test", "fixture").run();
   const cookie = await accessToken("cross-surface@example.invalid");
   const registered = await web("/me", cookie);
   const code = (await web("/discord/link-code", cookie, "POST", {})).data.code;

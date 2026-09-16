@@ -1,4 +1,5 @@
 export interface Env {
+  ADMIN_EMAILS?: string;
   DB: D1Database;
   ASSETS?: Fetcher;
   APP_ORIGIN: string;

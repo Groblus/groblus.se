@@ -9,6 +9,7 @@ import {
   vote,
 } from "./services";
 import { handleDiscord } from "./discord";
+import { isAdmin, isPaid, membershipYear, parseImport } from './membership';
 const json = (data: unknown, status = 200, headers: HeadersInit = {}) =>
   Response.json(data, {
     status,
@@ -109,13 +110,35 @@ async function api(req: Request, env: Env): Promise<Response> {
   const u = await current(req, env);
   if (!u) throw new ApiError(401, "Logga in via Cloudflare Access.");
   if (path === "/me" && req.method === "GET")
-    return json({ user: publicUser(u) });
+    return json({ user: { ...publicUser(u), isAdmin: isAdmin(env, u.email), isPaid: await isPaid(env, u.email) } });
+  if (path.startsWith('/admin/')) {
+    if (!isAdmin(env, u.email)) throw new ApiError(403, 'Endast administratörer har tillgång.');
+    if (path === '/admin/members' && req.method === 'GET') {
+      const members = await env.DB.prepare('SELECT m.email,m.paid_through_year paidThroughYear,u.discord_id discordId FROM memberships m LEFT JOIN users u ON lower(u.email)=lower(m.email) ORDER BY m.email').all();
+      return json({ members: members.results, year: membershipYear() });
+    }
+    if (path === '/admin/members/revoke' && req.method === 'POST') {
+      const email = text((await body(req)).email, 3, 254).toLowerCase();
+      await env.DB.prepare('UPDATE memberships SET paid_through_year=?,updated_at=?,updated_by=? WHERE email=?').bind(membershipYear()-1, new Date().toISOString(), u.email, email).run();
+      return json({ ok: true });
+    }
+    if (['/admin/members/preview', '/admin/members/import'].includes(path) && req.method === 'POST') {
+      const b = await body(req);
+      const parsed = parseImport(b.emails, b.year);
+      if (path.endsWith('/preview')) return json(parsed);
+      if (parsed.invalid.length) throw new ApiError(400, 'Rätta ogiltiga adresser innan du sparar.');
+      await env.DB.batch(parsed.emails.map(email => env.DB.prepare('INSERT INTO memberships VALUES (?,?,?,?) ON CONFLICT(email) DO UPDATE SET paid_through_year=MAX(memberships.paid_through_year,excluded.paid_through_year),updated_at=excluded.updated_at,updated_by=excluded.updated_by').bind(email, parsed.year, new Date().toISOString(), u.email)));
+      return json({ count: parsed.emails.length });
+    }
+    throw new ApiError(404, 'Sidan finns inte.');
+  }
   if (path === "/me" && req.method === "PUT") {
     const name = text((await body(req)).displayName, 1, 80);
     await env.DB.prepare("UPDATE users SET display_name=? WHERE id=?")
       .bind(name, u.id).run();
     return json({ user: publicUser({ ...u, display_name: name }) });
   }
+  if (!await isPaid(env, u.email)) throw new ApiError(403, 'Medlemsavgiften för innevarande år är inte registrerad. Kontakta kassören.');
   if (path === "/games" && req.method === "GET")
     return json({ games: await listGames(env.DB, u.id) });
   const players = path.match(/^\/games\/([^/]+)\/players$/);

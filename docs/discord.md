@@ -6,13 +6,13 @@ Status, 2026-09-16: Groblus Spelhyllan is installed in Groblus Gamers with appli
 
 All responses are ephemeral (visible only to the invoking member). No channel message history is read.
 
-- `/groblus registrera namn inbjudan`: create a Discord-only profile using an administrator-issued invite. No website account required.
+- `/groblus registrera`: directs members to Cloudflare email verification on the website, then linking. Invitation-only registration is retired.
 - `/groblus koppla kod`: attach Discord to an existing website profile using a short-lived, single-use code from the signed-in website. Website login uses Cloudflare Access; Discord login is not required.
 - `/groblus profil`: pick a game; independently toggle “Vill spela” and “Vill spelleda”. Add a game with a native modal. View interested members by display name and aggregate common times. The catalogue and member lists are paginated.
 - `/groblus tider`: choose weekday, time and how often you are available. Changes affect only the chosen slot. Times are Swedish local time: 10–14, 14–18, 18–22. “Ej angivet” removes a preference; it does not mean unavailable.
 - `/groblus planer`: browse concrete proposals and vote yes/maybe/no for each option. The same D1 records are used by the website. Creating and confirming plans currently uses the website.
 
-Do not create a Discord-only profile first if you already have a web profile: use `koppla`. Existing conflicting profiles are rejected rather than silently merged or discarding interests. Administrator-assisted, explicitly reviewed identity recovery/merge is needed for duplicates; automated merging and automatically converting a Discord-only account to a web profile are not implemented.
+All new profiles now require a Cloudflare-verified email and paid membership before linking: use `koppla`. Existing conflicting profiles are rejected rather than silently merged or discarding interests. Administrator-assisted, explicitly reviewed identity recovery/merge is needed for duplicates; automated merging and automatically converting a Discord-only account to a web profile are not implemented.
 
 ## Operator setup (requires separately approved real resources)
 
@@ -36,3 +36,6 @@ Official references checked 2026-09-13:
 - [Receiving and responding to interactions](https://docs.discord.com/developers/interactions/receiving-and-responding): signatures, response types, ephemeral messages and deadlines.
 - [Component reference](https://docs.discord.com/developers/components/reference): buttons, selects and modal inputs.
 - [Application commands](https://docs.discord.com/developers/interactions/application-commands): guild registration and application command scopes.
+
+
+Paid-membership gating and admin imports: see [membership administration](membership-admin.md). This supersedes the earlier invitation-only setup instructions above.

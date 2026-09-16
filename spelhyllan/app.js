@@ -137,6 +137,7 @@ async function busy(button, action) {
   }
 }
 function showSignedOut() {
+  document.querySelector('#admin-link')?.remove();
   state.user = null;
   state.games = [];
   state.plans = [];
@@ -154,6 +155,18 @@ function showSignedOut() {
 }
 async function enter(user) {
   state.user = user;
+  document.querySelector('#admin-link')?.remove();
+  if (user.isAdmin) {
+    const link = document.createElement('a');
+    link.id = 'admin-link'; link.href = '/spelhyllan/admin/'; link.textContent = 'Hantera medlemmar';
+    document.querySelector('main').prepend(link);
+  }
+  if (!user.isPaid) {
+    $('#member-view').classList.add('hidden');
+    $('#auth-view').classList.remove('hidden');
+    $('#auth-message').textContent = 'Medlemsavgiften för innevarande år är inte registrerad. Kontakta kassören.';
+    return;
+  }
   $("#auth-view").classList.add("hidden");
   $("#member-view").classList.remove("hidden");
   $("#profile-open").classList.remove("hidden");

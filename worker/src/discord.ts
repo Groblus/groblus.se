@@ -1,3 +1,4 @@
+import { isPaid, membershipYear } from "./membership";
 import type { Env } from "./types";
 import { listGames, listPlans, setInterest, vote } from "./services";
 
@@ -372,32 +373,12 @@ export async function handleDiscord(
     return reply("Okänt kommando.");
   const option = (name: string) =>
     String(sub?.options?.find((o) => o.name === name)?.value ?? "").trim();
-  let user = await env.DB.prepare("SELECT id FROM users WHERE discord_id=?")
+  let user = await env.DB.prepare("SELECT id,email FROM users WHERE discord_id=?")
     .bind(discordId)
-    .first<{ id: string }>();
+    .first<{ id: string; email: string | null }>();
   try {
     if (command === "registrera") {
-      if (user) return reply("Du har redan en profil. Kör /groblus profil.");
-      const name = option("namn"),
-        code = option("inbjudan");
-      if (name.length < 1 || name.length > 60 || !code || code.length > 200)
-        return reply("Ange ett namn (1–60 tecken) och en giltig inbjudan.");
-      const id = crypto.randomUUID(),
-        digest = await hash(code),
-        now = new Date().toISOString();
-      const result = await env.DB.batch([
-        env.DB.prepare(
-          "INSERT INTO users(id,display_name,discord_id,created_at) SELECT ?,?,?,? WHERE EXISTS(SELECT 1 FROM invites WHERE code_hash=? AND uses_remaining>0 AND expires_at>?)",
-        ).bind(id, name, discordId, now, digest, now),
-        env.DB.prepare(
-          "UPDATE invites SET uses_remaining=uses_remaining-1 WHERE code_hash=? AND EXISTS(SELECT 1 FROM users WHERE id=?)",
-        ).bind(digest, id),
-      ]);
-      return reply(
-        result[0].meta.changes
-          ? "Din profil är skapad! Kör /groblus profil för att fylla spelhyllan."
-          : "Inbjudan är ogiltig eller har gått ut.",
-      );
+      return reply(`Logga in med din medlemsadress via Cloudflare på ${env.APP_ORIGIN}/spelhyllan/. Skapa sedan en kopplingskod i din profil och använd /groblus koppla. Du anger e-post och verifieringskod på webbplatsen, inte i Discord.`);
     }
     if (command === "koppla") {
       if (user)
@@ -411,8 +392,8 @@ export async function handleDiscord(
         now = new Date().toISOString();
       const result = await env.DB.batch([
         env.DB.prepare(
-          "UPDATE users SET discord_id=? WHERE discord_id IS NULL AND id=(SELECT user_id FROM discord_link_codes WHERE code_hash=? AND expires_at>?)",
-        ).bind(discordId, digest, now),
+          "UPDATE users SET discord_id=? WHERE discord_id IS NULL AND email IN (SELECT email FROM memberships WHERE paid_through_year>=?) AND id=(SELECT user_id FROM discord_link_codes WHERE code_hash=? AND expires_at>?)",
+        ).bind(discordId, membershipYear(), digest, now),
         env.DB.prepare(
           "DELETE FROM discord_link_codes WHERE code_hash=? AND user_id IN (SELECT id FROM users WHERE discord_id=?)",
         ).bind(digest, discordId),
@@ -425,8 +406,9 @@ export async function handleDiscord(
     }
     if (!user)
       return reply(
-        "Välkommen! Använd /groblus registrera med föreningens inbjudan, eller logga in på hemsidan och skapa en kopplingskod för /groblus koppla.",
+        "Välkommen! Använd /groblus registrera för att logga in med din medlemsadress och koppla Discord.",
       );
+    if (!await isPaid(env, user.email)) return reply("Medlemsavgiften för innevarande år är inte registrerad. Kontakta kassören.");
     if (command === "profil") return profile(env, user.id);
     if (command === "tider") return availability(env, user.id);
     if (command === "planer") return plans(env, user.id);

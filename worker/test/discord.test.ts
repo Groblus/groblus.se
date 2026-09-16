@@ -53,8 +53,9 @@ async function call(payload: unknown) {
   ).json() as Promise<any>;
 }
 async function seed() {
+  await env.DB.prepare("INSERT OR REPLACE INTO memberships VALUES (\'member@example.test\',2200,\'test\',\'fixture\')").run();
   await env.DB.prepare(
-    "INSERT INTO users(id,display_name,discord_id,created_at) VALUES(?,?,?,?)",
+    "INSERT INTO users(id,display_name,discord_id,created_at,email) VALUES(?,?,?,?,\'member@example.test\')",
   )
     .bind("member", "Oliver", "123", new Date().toISOString())
     .run();
@@ -162,33 +163,13 @@ describe("Discord trust boundary", () => {
         .first(),
     ).toEqual({ day: 5, period: "day", preference: "sometimes" });
   });
-  it("consumes invite exactly once and does not expose member information", async () => {
-    await env.DB.prepare("INSERT INTO invites VALUES(?,?,?)")
-      .bind(
-        await hash("invite"),
-        1,
-        new Date(Date.now() + 60_000).toISOString(),
-      )
-      .run();
-    const register = command("registrera", [
-      { name: "namn", value: "Ny medlem" },
-      { name: "inbjudan", value: "invite" },
-    ]);
-    expect((await call(interaction(register))).data.content).toContain(
-      "skapad",
-    );
-    expect(
-      (await call(interaction(register, 2, "456"))).data.content,
-    ).toContain("ogiltig");
-    expect(
-      (await env.DB.prepare("SELECT * FROM users").all()).results,
-    ).toHaveLength(1);
-    expect(
-      (await env.DB.prepare("SELECT uses_remaining FROM invites").first())
-        ?.uses_remaining,
-    ).toBe(0);
+  it("directs registration through Access without creating an unverified profile", async () => {
+    const result = await call(interaction(command("registrera")));
+    expect(result.data.content).toContain("Cloudflare");
+    expect((await env.DB.prepare("SELECT * FROM users").all()).results).toHaveLength(0);
   });
   it("links one code once and rejects conflicting profiles without consuming code", async () => {
+    await env.DB.prepare("INSERT INTO memberships VALUES (\'member@example.test\',2200,\'test\',\'fixture\')").run();
     await env.DB.prepare(
       "INSERT INTO users(id,email,display_name,created_at) VALUES(?,?,?,?)",
     )
@@ -308,4 +289,14 @@ describe("Discord trust boundary", () => {
       )?.vote,
     ).toBe("yes");
   });
+});
+
+it('blocks expired members on commands and component actions without altering interests', async () => {
+  await seed();
+  await call(interaction({custom_id:'g:play:the-warren'},3));
+  await env.DB.prepare('UPDATE memberships SET paid_through_year=2000').run();
+  for (const [data,type] of [[command('profil'),2],[{custom_id:'g:play:the-warren'},3]] as const) {
+    expect((await call(interaction(data,type))).data.content).toContain('Medlemsavgiften');
+  }
+  expect(await env.DB.prepare("SELECT want_play FROM interests WHERE user_id='member' AND game_id='the-warren'").first()).toEqual({want_play:1});
 });

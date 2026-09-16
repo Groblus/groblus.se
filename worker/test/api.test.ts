@@ -11,6 +11,7 @@ const call = async (path: string, method = "GET", data?: unknown, assertion = ""
     body: data === undefined ? undefined : JSON.stringify(data),
   }), { ...env, ...accessBindings });
 async function register(email: string, _unused?: string) {
+  await env.DB.prepare("INSERT OR REPLACE INTO memberships VALUES (?,2200,?,?)").bind(email, "test", "fixture").run();
   const cookie = await accessToken(email);
   const response = await call("/me", "GET", undefined, cookie);
   expect(response.status).toBe(200);

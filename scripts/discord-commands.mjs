@@ -29,11 +29,7 @@ export const command = {
     {
       type: 1,
       name: "registrera",
-      description: "Skapa din profil med föreningens inbjudan",
-      options: [
-        string("namn", "Ditt visningsnamn", 60),
-        string("inbjudan", "Inbjudningskod från föreningen", 200),
-      ],
+      description: "Logga in med din medlemsadress och koppla Discord",
     },
     {
       type: 1,
