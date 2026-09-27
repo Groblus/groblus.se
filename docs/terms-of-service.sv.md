@@ -22,4 +22,4 @@ Tjänsten drivs av föreningen och kan ändras eller tillfälligt vara otillgän
 
 ## Personuppgifter och kontakt
 
-Hur dina uppgifter behandlas beskrivs i Spelhyllans integritetspolicy. Kontakta Groblus Gamers styrelse via kontaktformuläret på https://groblus.se/ vid frågor. Väsentliga ändringar av villkoren meddelas i föreningens ordinarie informationskanaler.
+Hur dina uppgifter behandlas beskrivs i Spelhyllans integritetspolicy. Kontakta föreningen via [Sveroks kontaktformulär för Groblus Gamers](https://forening.sverok.se/InfoPages/contact/1128) vid frågor. Väsentliga ändringar av villkoren meddelas i föreningens ordinarie informationskanaler.

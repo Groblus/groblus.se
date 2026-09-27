@@ -10,7 +10,7 @@ Cloudflare Access sköter webbens inloggning och sessioner. Medlemmar ska kunna 
 
 ## Lanseringsgräns
 
-Separat HTTPS-origin och D1 används för appen. Netlify-sajten och kontaktformuläret behåller sin drift. Följ [driftförberedelsen](spelhyllan-deployment.md). Access måste konfigureras och verifieras med verklig webbinloggning innan medlemmar bjuds in. Kod eller konfigurationsfiler bevisar inte att Access-policyn är aktiv. Full acceptans kräver också installerad Discord-app och riktiga interaktioner mot samma databas.
+Separat HTTPS-origin och D1 används för appen. Föreningssajten har en egen drift och länkar till [Sveroks kontaktformulär](https://forening.sverok.se/InfoPages/contact/1128). Följ [driftförberedelsen](spelhyllan-deployment.md). Access måste konfigureras och verifieras med verklig webbinloggning innan medlemmar bjuds in. Kod eller konfigurationsfiler bevisar inte att Access-policyn är aktiv. Full acceptans kräver också installerad Discord-app och riktiga interaktioner mot samma databas.
 
 Ingen uppgradering till Workers Paid krävs av den borttagna lösenordshashningen. Inget abonnemang eller kostnadsökning är godkänt genom implementationen.
 
@@ -23,7 +23,7 @@ Ingen uppgradering till Workers Paid krävs av den borttagna lösenordshashninge
 - Konkreta datumsvar hålls skilda från vanliga tider. Bara förslagsställaren kan bekräfta datum.
 - Andra medlemmar ser visningsnamn och roller, inga privata mejladresser.
 - Verkliga Discord-klick sparar intresse, tid och röst som webben läser tillbaka, och omvänt. Signatur, färsk tidsstämpel och rätt server krävs.
-- Kontaktformuläret på huvudsajten fungerar fortfarande. Export och återläsning provas i separat databas.
+- Den publicerade huvudsajten länkar till rätt Sverok-formulär. Export och återläsning provas i separat databas.
 
 ## Lokal körning
 
@@ -58,4 +58,4 @@ Veckans spelpuls, automatiska mejl/påminnelser, kalenderexport, reservlistor oc
 
 ## Separat staging och produktion
 
-[Driftförberedelse och återläsning](spelhyllan-deployment.md) beskriver konfigurationsgeneratorn, explicit miljöval för fjärradministration, Netlify-gränsen samt verifierade lokala export-/importsteg. Vid `--remote` kräver adminverktyget nu även `--config` till den förberedda miljöns konfiguration.
+[Driftförberedelse och återläsning](spelhyllan-deployment.md) beskriver konfigurationsgeneratorn, explicit miljöval för fjärradministration, gränsen mellan föreningssajt och app samt verifierade lokala export-/importsteg. Vid `--remote` kräver adminverktyget nu även `--config` till den förberedda miljöns konfiguration.
