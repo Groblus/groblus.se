@@ -9,4 +9,4 @@ anslutna till Sverok och är det än idag. <br />
 Medlemsavgift är 100 kr per år. Budgeten används till inköp av spel och
 tillbehör till dem.
 
-**Bli medlem:** Använd kontaktformuläret nedan.
+**Bli medlem eller kontakta oss:** [Skicka ett meddelande till Groblus Gamers via Sveroks kontaktformulär](https://forening.sverok.se/InfoPages/contact/1128).
