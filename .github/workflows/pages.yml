@@ -34,12 +34,12 @@ jobs:
           test -f _site/images/foton/Groblushelgen_2022_1.jpg
           test -f _site/downloads/Troika_-_Taget_genom_Kosmos.pdf
       - uses: actions/upload-pages-artifact@v4
-        if: github.event_name != 'pull_request'
+        if: github.ref == 'refs/heads/master'
         with:
           path: _site
 
   deploy:
-    if: github.event_name != 'pull_request'
+    if: github.ref == 'refs/heads/master'
     needs: build
     runs-on: ubuntu-latest
     permissions:
