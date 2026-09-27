@@ -19,7 +19,7 @@ Målet är inte uppnått förrän samtliga nödvändiga kriterier nedan är veri
 - [ ] Cloudflare Access tillåter endast godkända medlemsadresser; återbesök använder Cloudflares session, utloggning fungerar och behörighetsisolering består. Appen hanterar inga lösenord eller egna sessioner.
 - [ ] Kostnad/CPU på avsedd Workers-plan verifierad; ingen betald plan aktiveras utan Olivers godkännande.
 - [x] Backup/export och återläsning verifierad på testdata; rensning av utgångna poster har dokumenterad rutin.
-- [ ] Befintliga groblus.se och kontaktformulär fortsätter fungera med vald driftlösning.
+- [ ] Den publicerade groblus.se fungerar och länkar till rätt kontaktformulär hos Sverok med vald driftlösning.
 
 ## Discord i verklig server
 - [ ] Groblus Discord-application är installerad med nödvändig minsta åtkomst och /groblus-kommandon registrerade.

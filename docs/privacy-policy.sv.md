@@ -4,7 +4,7 @@ Utkast 2026-09-16 – för föreningens godkännande före publicering.
 
 ## Ansvar och kontakt
 
-Groblus Gamers ansvarar för behandlingen av personuppgifter i Spelhyllan på webben och i föreningens Discord-app. Kontakta styrelsen via kontaktformuläret på https://groblus.se/ för frågor eller för att begära tillgång, rättelse eller radering. Ange att ärendet gäller Spelhyllan. Skicka aldrig lösenord eller inloggningskoder.
+Groblus Gamers ansvarar för behandlingen av personuppgifter i Spelhyllan på webben och i föreningens Discord-app. Kontakta föreningen via [Sveroks kontaktformulär för Groblus Gamers](https://forening.sverok.se/InfoPages/contact/1128) för frågor eller för att begära tillgång, rättelse eller radering. Ange att ärendet gäller Spelhyllan. Skicka aldrig lösenord eller inloggningskoder.
 
 ## Uppgifter och användning
 

@@ -2,7 +2,7 @@
 
 > Status 2026-09-14: Cloudflare Access-versionen är publicerad i staging och D1-migration 0002 är applicerad. Verklig inloggning och Discord-installation återstår att slutverifiera. Se [acceptanslistan](glantan-acceptance.md).
 
-Den befintliga föreningssajten och dess Netlify-kontaktformulär behåller sin nuvarande drift. Spelhyllan får en separat HTTPS-origin. Appens `/api/*` och `/spelhyllan/*` hanteras av samma Worker och samma D1. Övriga GET/HEAD-sökvägar hänvisas till föreningssajten; andra metoder skickas inte vidare. Lokalkonfigurationen ändras inte.
+Föreningssajten har en separat drift och länkar till [Sveroks kontaktformulär för Groblus Gamers](https://forening.sverok.se/InfoPages/contact/1128). Spelhyllan får en separat HTTPS-origin. Appens `/api/*` och `/spelhyllan/*` hanteras av samma Worker och samma D1. Övriga GET/HEAD-sökvägar hänvisas till föreningssajten; andra metoder skickas inte vidare. Lokalkonfigurationen ändras inte.
 
 ## Förbered lokal konfiguration
 
@@ -18,7 +18,7 @@ Den befintliga föreningssajten och dess Netlify-kontaktformulär behåller sin 
 
 För att verifiera webb och D1 innan Discord-appen är klar kan staging förberedas med `node worker/scripts/prepare-deploy.mjs staging --web-only`. Då utelämnas båda Discord-variablerna även om de finns i miljön; interaktionsendpointen nekar anrop med 401 eftersom verifieringsnyckel saknas. Alla övriga kontroller gäller fortfarande. Flaggan tillåts inte för produktion. När Discord är konfigurerat körs förberedelsen igen utan flaggan och staging publiceras på nytt. Webbtesterna räcker inte för att godkänna hela lösningen; faktisk Discord-installation och synkronisering återstår.
 
-Kör `npm run build` före förberedelsen och förbered igen efter varje frontendändring. Endast Spelhyllans byggda tillgångar och säkerhetsheaders kopieras. Designjämförelser och Netlify-kontaktformuläret kopieras inte. Ingen påhittad databasidentifierare kan användas som produktionsmall. Skriptet lagrar ingen bottoken.
+Kör `npm run build` före förberedelsen och förbered igen efter varje frontendändring. Endast Spelhyllans byggda tillgångar och säkerhetsheaders kopieras. Föreningssajtens sidor och designjämförelser kopieras inte. Ingen påhittad databasidentifierare kan användas som produktionsmall. Skriptet lagrar ingen bottoken.
 
 Konfigurationen inkluderar Workers.dev, en D1-bindning och timvis körning av befintlig cleanup kl. 17 minuter över varje timme (UTC). Det rensar utgångna inbjudningskoder, Discord-kopplingar/interaktionskvitton och rate-limitposter. En deployment aktiverar schemat; själva förberedelsen gör det inte. Cloudflare Access hanterar inloggning; appen hash­ar inga lösenord. Ingen uppgradering av abonnemang ingår i skripten.
 

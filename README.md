@@ -36,4 +36,4 @@ Den gamla statiska sajten kan köras separat med `pnpm start`. Inloggning och da
 
 Implementationen kan granskas och köras lokalt. Molnresurser, Discord-installation och produktionslansering är separata åtgärder. Enbart en statisk Netlify-deploy aktiverar inte API:t.
 
-Befintligt kontaktformulär använder Netlify Forms. Flytta inte hela sajten till en annan host utan att först lösa detta formulär. En möjlig produktionslösning är att låta huvudsajten ligga kvar och ge Spelhyllan en egen origin där app och API körs tillsammans; alternativt krävs verifierad routing för `/api/*` på samma origin som appen. Tredjepartscookies eller tillåtande CORS ska inte användas som genväg.
+Föreningssajten länkar till [Sveroks kontaktformulär för Groblus Gamers](https://forening.sverok.se/InfoPages/contact/1128). Spelhyllan kan ha en egen origin där app och API körs tillsammans; alternativt krävs verifierad routing för `/api/*` på samma origin som appen. Tredjepartscookies eller tillåtande CORS ska inte användas som genväg.

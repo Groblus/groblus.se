@@ -4,7 +4,7 @@ Drafts: [privacy](privacy-policy.sv.md) and [terms](terms-of-service.sv.md).
 
 Before adopting and publishing:
 
-- Contact route confirmed by Oliver: the existing groblus.se form reaches a board member who can handle privacy and deletion requests.
+- Contact route chosen by Oliver: [Sverok's Groblus Gamers contact form](https://forening.sverok.se/InfoPages/contact/1128). Confirm that privacy and deletion requests submitted there reach the responsible board member before publishing the drafts.
 - Approve the proposed legitimate-interest basis and the member-facing terms.
 - Establish the retention/deletion routine, including backup expiry and provider log retention. The draft explicitly states there is no automatic profile expiry; do not invent a retention period or claim deletion is already automated.
 - Confirm provider processing agreements and applicable international-transfer safeguards before making specific claims about them.
